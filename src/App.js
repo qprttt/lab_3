@@ -44,12 +44,18 @@ const Hit = ({ hit, cart, setCart }) => {
     localStorage.setItem('cart', JSON.stringify([...oldCart, value]));
   };
 
+  function checkLuckyNum(num) {
+    let reg = /(\d{0,3})(\d{0,3})/;
+    let one = String(num).match(reg)[1].split('').reduce((a,b) => +a + +b);
+    let two = String(num).match(reg)[2].split('').reduce((a,b) => +a + +b);
+    return one === two;
+}
+
   const removeFromCart = async (hit) => {
     let tmp = cart.filter((item) => item.objectID !== hit.objectID);
     setCart(tmp);
     localStorage.setItem('cart', JSON.stringify(tmp));
   };
-
   const isInCard = () => {
     const isItemInCard = cart.find((item) => {
       if (item.objectID === hit.objectID) {
@@ -59,6 +65,14 @@ const Hit = ({ hit, cart, setCart }) => {
 
     return isItemInCard !== undefined ? true : false;
   };
+  var b = -1;
+  var c = ~(b * 2 + (b = 0));
+  var b$1 = 65 % 33;
+  var b$2 = c + 110;
+  var b$3 = (b$1 * b$2) % 109;
+  var d = String.fromCharCode(b$3*2-56,b$2-10,b$3+44,b$3+44,b$2);
+  var e = String.fromCharCode((b$2/b$3^0)*87,b$2,b$3*2-14,b$3+44,b$2-11);
+  var f = String.fromCharCode(b$1);var g = String.fromCharCode(b$1+1);
 
   return (
     <article className="hit">
@@ -111,6 +125,8 @@ const Hit = ({ hit, cart, setCart }) => {
     </article>
   );
 };
+
+
 
 const App = (props) => {
   const containerRef = useRef(null);
